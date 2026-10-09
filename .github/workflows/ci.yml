@@ -1,0 +1,20 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -e ".[dev]" && pytest -q
+      - run: rag-eval retrieval -o results && cat results/retrieval.md
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t rag-eval-assistant .
+      - run: |
+          docker run -d -p 8000:8000 --name app rag-eval-assistant
+          sleep 3
+          curl -sf "http://localhost:8000/api/ask?q=What+license+are+the+Amharic+items+under"

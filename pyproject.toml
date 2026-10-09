@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-eval-assistant"
+version = "0.1.0"
+description = "Retrieval-augmented Q&A over project docs, with retrieval and answer-quality evaluation"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+rag-eval = "rag_eval.cli:main"
+
+[tool.setuptools]
+packages = ["rag_eval"]

@@ -1,0 +1,51 @@
+{"id": "ef-01", "question": "What overall accuracy did llama3.2:3b and qwen2.5:3b get in evalforge?", "doc": "evalforge", "evidence": ["**41/45**", "41/45"], "facts": [["91%"]]}
+{"id": "ef-02", "question": "How many scorers does evalforge ship with?", "doc": "evalforge", "evidence": ["Seven scorers"], "facts": [["seven", "7"]]}
+{"id": "ef-03", "question": "Which evalforge scorer runs model-written code against hidden unit tests?", "doc": "evalforge", "evidence": ["python_tests` runs model-written code", "python_tests runs model-written code"], "facts": [["python_tests"]]}
+{"id": "ef-04", "question": "What mistake did Qwen make on the run-length encoding coding task?", "doc": "evalforge", "evidence": ["run-length encoder"], "facts": [["single character"], ["b1"]]}
+{"id": "ef-05", "question": "What was the weakest area for both models in evalforge?", "doc": "evalforge", "evidence": ["Instruction-following is the weakest area"], "facts": [["instruction"]]}
+{"id": "ef-06", "question": "How many tasks are in evalforge's built-in suites?", "doc": "evalforge", "evidence": ["20 math word problems"], "facts": [["20 math"], ["15 coding"], ["10 instruction"]]}
+{"id": "ef-07", "question": "Does evalforge need any third-party Python packages to run?", "doc": "evalforge", "evidence": ["standard library only"], "facts": [["standard library", "no dependencies", "dependency-free"]]}
+{"id": "ef-08", "question": "Is the python_tests scorer a secure sandbox for untrusted code?", "doc": "evalforge", "evidence": ["not a security sandbox"], "facts": [["not a security sandbox", "not a sandbox", "container"]]}
+{"id": "ef-09", "question": "What least common multiple of 6, 8 and 15 did Llama give, and what is the right answer?", "doc": "evalforge", "evidence": ["least common multiple"], "facts": [["360"], ["120"]]}
+{"id": "ps-01", "question": "In preference-studio, how often did llama3.2:3b's verdict flip when the answers swapped places?", "doc": "preference-studio", "evidence": ["flipped in 18 of 40 pairs"], "facts": [["18"]]}
+{"id": "ps-02", "question": "What was the Cohen's kappa between the two AI raters in preference-studio?", "doc": "preference-studio", "evidence": ["κ = 0.21"], "facts": [["0.21"]]}
+{"id": "ps-03", "question": "What export format does preference-studio produce for DPO training?", "doc": "preference-studio", "evidence": ["DPO JSONL"], "facts": [["prompt"], ["chosen"], ["rejected"]]}
+{"id": "ps-04", "question": "Which agreement statistics does preference-studio compute?", "doc": "preference-studio", "evidence": ["Krippendorff's α (nominal"], "facts": [["krippendorff"], ["fleiss"], ["cohen"]]}
+{"id": "ps-05", "question": "How does preference-studio detect a rater who always picks the left answer?", "doc": "preference-studio", "evidence": ["left-side pick rate"], "facts": [["left-side pick rate", "left side"]]}
+{"id": "ps-06", "question": "What tech stack is preference-studio built with?", "doc": "preference-studio", "evidence": ["React + TypeScript", "FastAPI routes"], "facts": [["fastapi"], ["react"]]}
+{"id": "ps-07", "question": "What gold accuracy did qwen2.5:3b reach as a rater?", "doc": "preference-studio", "evidence": ["| qwen2.5:3b | 92% | 54% | 90%"], "facts": [["90%"]]}
+{"id": "ps-08", "question": "How many sample pairs come with preference-studio, and how many are gold?", "doc": "preference-studio", "evidence": ["40 hand-written pairs (10 of them gold)"], "facts": [["40"], ["10"]]}
+{"id": "ps-09", "question": "Is there password login in preference-studio?", "doc": "preference-studio", "evidence": ["no passwords"], "facts": [["no password", "name only", "by name"]]}
+{"id": "ps-10", "question": "What happens in preference-studio when an AI rater gives different verdicts for the two orders?", "doc": "preference-studio", "evidence": ["it's recorded as a tie", "recorded as ties"], "facts": [["tie"]]}
+{"id": "am-01", "question": "What average score did gemma3:4b get on the Amharic benchmark?", "doc": "amharic-llm-bench", "evidence": ["**53.6**", "53.6"], "facts": [["53.6"]]}
+{"id": "am-02", "question": "How many items are in amharic-llm-bench?", "doc": "amharic-llm-bench", "evidence": ["All 113 items"], "facts": [["113"]]}
+{"id": "am-03", "question": "Why does the Amharic benchmark use chrF instead of BLEU?", "doc": "amharic-llm-bench", "evidence": ["character n-gram F-score"], "facts": [["affix"]]}
+{"id": "am-04", "question": "What share of Gemma's Amharic outputs drifted into other scripts?", "doc": "amharic-llm-bench", "evidence": ["34% of Gemma"], "facts": [["34%"]]}
+{"id": "am-05", "question": "Which Amharic letters are treated as the same during normalization?", "doc": "amharic-llm-bench", "evidence": ["folds the homophone letter families", "sound the same"], "facts": [["homophone", "sound the same", "ሀ/ሐ/ኀ"]]}
+{"id": "am-06", "question": "How did Llama 3.2 3B score on Amharic reading comprehension QA?", "doc": "amharic-llm-bench", "evidence": ["0/26 on QA", "It scored 0/26"], "facts": [["0/26", "0.0%", "0%"]]}
+{"id": "am-07", "question": "What did Gemma output when asked to translate the sentence about drinking water with a fever?", "doc": "amharic-llm-bench", "evidence": ["entirely in Chinese"], "facts": [["chinese"]]}
+{"id": "am-08", "question": "How many people speak Amharic according to the benchmark?", "doc": "amharic-llm-bench", "evidence": ["more than 50 million speakers"], "facts": [["50 million"]]}
+{"id": "am-09", "question": "Are the 3B models better than random guessing on Amharic multiple choice?", "doc": "amharic-llm-bench", "evidence": ["at chance on multiple choice"], "facts": [["chance", "25%"]]}
+{"id": "am-10", "question": "What license are the Amharic benchmark items released under?", "doc": "amharic-llm-bench", "evidence": ["CC BY 4.0"], "facts": [["cc by 4.0"]]}
+{"id": "nf-01", "question": "What field F1 did the rule baseline get in notes-to-fhir?", "doc": "notes-to-fhir", "evidence": ["**97.4**", "97.4 [95.8"], "facts": [["97.4"]]}
+{"id": "nf-02", "question": "Which model beat the rule baseline on the hand-written clinical notes?", "doc": "notes-to-fhir", "evidence": ["Llama 3.2 3B edges it"], "facts": [["llama"], ["89.4"]]}
+{"id": "nf-03", "question": "How many clinical notes are in notes-to-fhir, and are any of them real patient data?", "doc": "notes-to-fhir", "evidence": ["50 template notes"], "facts": [["50"], ["20"]]}
+{"id": "nf-04", "question": "Which medical coding systems does notes-to-fhir map to?", "doc": "notes-to-fhir", "evidence": ["SNOMED CT, ICD-10-CM, RxNorm and LOINC"], "facts": [["snomed"], ["icd-10"], ["rxnorm"], ["loinc"]]}
+{"id": "nf-05", "question": "Why did Gemma 3 4B score poorly in notes-to-fhir?", "doc": "notes-to-fhir", "evidence": ["Gemma 3 4B can't use Ollama's JSON modes"], "facts": [["{}", "json mode", "json modes"]]}
+{"id": "nf-06", "question": "How many stopped drugs did Llama correctly mark as stopped?", "doc": "notes-to-fhir", "evidence": ["6 of 19 stopped drugs"], "facts": [["6 of 19"]]}
+{"id": "nf-07", "question": "Which library validates the FHIR R4 bundles?", "doc": "notes-to-fhir", "evidence": ["validated with `fhir.resources`", "validated with fhir.resources"], "facts": [["fhir.resources"]]}
+{"id": "nf-08", "question": "How were the medical codes in notes-to-fhir verified?", "doc": "notes-to-fhir", "evidence": ["verify_codes.py"], "facts": [["terminology", "verify_codes", "rxnav"]]}
+{"id": "la-01", "question": "What precision did the from-scratch confident learning detector reach on digits?", "doc": "label-auditor", "evidence": ["**0.99**", "0.99"], "facts": [["0.99", "99%"]]}
+{"id": "la-02", "question": "Which detector had the best F1 on the digits dataset in label-auditor?", "doc": "label-auditor", "evidence": ["**0.93**", "(0.87 vs 0.93)"], "facts": [["cleanlab"]]}
+{"id": "la-03", "question": "How does label-auditor know which labels are wrong when benchmarking?", "doc": "label-auditor", "evidence": ["flips a known share of labels"], "facts": [["flip"]]}
+{"id": "la-04", "question": "Which models vote in label-auditor's ensemble?", "doc": "label-auditor", "evidence": ["logistic regression, k-NN, random forest"], "facts": [["logistic regression"], ["k-nn"], ["random forest"]]}
+{"id": "la-05", "question": "How are image folders turned into features in label-auditor?", "doc": "label-auditor", "evidence": ["ResNet-18"], "facts": [["resnet-18"]]}
+{"id": "la-06", "question": "How many labels did confident learning flag on the original, unmodified iris and digits data?", "doc": "label-auditor", "evidence": ["flags 0 of 150 iris"], "facts": [["0 of 150"], ["0 of 1797"]]}
+{"id": "un-01", "question": "What salary is Beki asking for?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-02", "question": "What GPU was used to fine-tune the Amharic model?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-03", "question": "What is the monthly hosting cost of preference-studio in production?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-04", "question": "How did GPT-4 score on evalforge's math suite?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-05", "question": "Which hospital uses notes-to-fhir?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-06", "question": "What accuracy does label-auditor get on CIFAR-10?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-07", "question": "How many users signed up for preference-studio last month?", "doc": null, "evidence": [], "facts": [], "answerable": false}
+{"id": "un-08", "question": "What is the capital of Kenya?", "doc": null, "evidence": [], "facts": [], "answerable": false}
