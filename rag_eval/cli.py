@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from .corpus import DEFAULT_CORPUS, load_chunks
-from .evaluate import build_retriever, eval_answers, eval_retrieval, load_eval
+from .evaluate import build_retriever, eval_answers, eval_retrieval, load_eval, rescore, summarize
 from .generate import ExtractiveAnswerer, LLMAnswerer
 from .llm import ollama_chat, ollama_embedder
 from .retrieve import CachedEmbedder
@@ -91,6 +91,27 @@ def cmd_answers(a):
             f.write(line + "\n")
 
 
+def cmd_rescore(a):
+    """Rescore saved answers files after a metric change; rewrites them and answers.md."""
+    items = load_eval(a.eval)
+    chunks = load_chunks(a.corpus, a.chunk_size)
+    od = Path(a.dir)
+    lines = ["| Answerer | Correct facts | Correct when right chunk found | False refusals "
+             "| Refused unanswerable | Number grounding | Faithfulness (judge) |",
+             "|---|---|---|---|---|---|---|"]
+    for f in sorted(od.glob("answers__*.jsonl")):
+        rows = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
+        rows = rescore(rows, items, chunks)
+        f.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+        s = summarize(rows)
+        name = f.stem.split("__")[1]
+        lines.append(f"| {name} | {fmt(s['correctness'])} | {fmt(s['correctness_when_retrieved'])} "
+                     f"| {s['false_refusals']}/{s['n_answerable']} | {s['correct_refusals']}/{s['n_unanswerable']} "
+                     f"| {fmt(s['grounding'])} | {fmt(s['faithfulness'])} |")
+        print(lines[-1])
+    (od / "answers.md").write_text("\n".join(lines) + "\n")
+
+
 def cmd_serve(a):
     from .server import serve
     serve(a.host, a.port)
@@ -125,6 +146,11 @@ def main(argv=None):
     s.add_argument("--judge", default=None, help="ollama:<model> for faithfulness")
     s.add_argument("-o", "--out", default="results")
     s.set_defaults(fn=cmd_answers)
+
+    s = sub.add_parser("rescore", help="rescore saved answers without calling models")
+    s.add_argument("dir")
+    s.add_argument("--chunk-size", type=int, default=600)
+    s.set_defaults(fn=cmd_rescore)
 
     s = sub.add_parser("serve", help="web demo")
     s.add_argument("--host", default="0.0.0.0")

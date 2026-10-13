@@ -74,11 +74,19 @@ REFUSAL = re.compile(r"(don'?t|do not|does not|doesn'?t|cannot|can'?t) (know|con
 
 
 def is_refusal(answer: str) -> bool:
-    return bool(REFUSAL.search(answer.replace("’", "'")))
+    """A refusal is the exact "I don't know" line, or a short reply that only declines.
+
+    Long answers that hedge one detail ("it doesn't say X") are answers, not refusals.
+    """
+    a = answer.replace("’", "'")
+    if "i don't know based on these documents" in a.lower():
+        return True
+    return bool(REFUSAL.search(a)) and len(a.split()) <= 25
 
 
 def numbers(text: str) -> list[str]:
-    text = re.sub(r"\[\d+\]", " ", norm(text))  # drop citation markers
+    text = re.sub(r"(?m)^\s*\d+[.)]\s", " ", text)  # drop list numbering
+    text = re.sub(r"\[[\d,\s]+\]", " ", norm(text))  # drop citations like [1] or [1, 3]
     return re.findall(r"\d+(?:\.\d+)?", text)
 
 

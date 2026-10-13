@@ -101,3 +101,24 @@ def summarize(rows: list[dict]) -> dict:
         "grounding": _avg(r.get("grounding") for r in rows),
         "faithfulness": _avg(r.get("faithfulness") for r in rows),
     }
+
+
+def rescore(rows: list[dict], items: list[dict], chunks: list[Chunk]) -> list[dict]:
+    """Recompute model-free scores on saved answers (no model calls).
+
+    Faithfulness is kept as saved; a row that was a refusal before has none.
+    """
+    by_id, by_chunk = {i["id"]: i for i in items}, {c.id: c for c in chunks}
+    out = []
+    for r in rows:
+        it, srcs = by_id[r["id"]], [by_chunk[c] for c in r["sources"]]
+        r = dict(r, refused=M.is_refusal(r["answer"]))
+        if it["answerable"]:
+            r["correctness"] = M.correctness(r["answer"], it["facts"])
+        if r["refused"]:
+            r.pop("grounding", None); r.pop("faithfulness", None)
+        else:
+            r["grounding"] = M.number_grounding(r["answer"], srcs)
+            r.setdefault("faithfulness", None)
+        out.append(r)
+    return out

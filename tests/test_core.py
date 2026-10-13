@@ -153,3 +153,14 @@ def test_server_answers(monkeypatch):
         assert d["answerer"].startswith("extractive") and len(d["sources"]) == 3
     finally:
         srv.shutdown()
+
+
+def test_refusal_only_for_short_declines():
+    assert M.is_refusal("[1] I don't know based on these documents.")
+    long = "Confident learning flagged 0 of 150 iris labels [1]. " * 3 + "The sources do not mention CIFAR."
+    assert not M.is_refusal(long)
+
+
+def test_grounding_ignores_citation_lists_and_numbering():
+    assert M.number_grounding("It scored 91% [1, 3].", C) == 1.0
+    assert M.number_grounding("Stats:\n1. scored 91%\n2. done", C) == 1.0
